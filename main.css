@@ -2,10 +2,55 @@
   width: 80vh;
   height: 80vh;
   border: 3px solid black;
+  margin-left: 100px;
 }
 
 .barChart {
   border: 1px solid black;
-  width: 50px;
-  height: 50px;
+  display: table;
+}
+
+.right {
+  text-align: right;
+}
+
+.xAxis {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.yAxis {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.textInsideBarChart {
+  display: table-cell;
+}
+
+.barChart-top {
+  text-align: center;
+  vertical-align: top; 
+}
+
+.barChart-center {
+  text-align: center;
+  vertical-align: middle;  
+}
+
+.barChart-bottom {
+  text-align: center;
+  vertical-align: bottom;  
+}
+
+.barChart-left {
+  vertical-align: middle; 
+}
+
+.barChart-right {
+  vertical-align: middle;  
 }
