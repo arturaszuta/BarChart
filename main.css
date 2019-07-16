@@ -1,6 +1,6 @@
 #mainDiv {
-  width: 80vh;
-  height: 80vh;
+  width: 600px;
+  height: 400px;
   border: 3px solid black;
   margin-left: 100px;
 }
@@ -30,6 +30,7 @@
 
 .textInsideBarChart {
   display: table-cell;
+  position: relative;
 }
 
 .barChart-top {
@@ -53,4 +54,35 @@
 
 .barChart-right {
   vertical-align: middle;  
+}
+
+.xAxis-labels {
+  transform: translateY(-2em);
+}
+
+.yAxis-labels {
+  transform: translateX(-2em);
+}
+
+.labelX {
+  margin: 0;
+  padding: 0;
+  display: table-row;
+  vertical-align: baseline;
+  height: 1%;
+  text-align: center;
+  transform: translateY(2em);
+}
+
+.labelY {
+  display: table-row;
+  margin: 0;
+  padding: 0;
+  height: 1%;
+  transform: translateX(-100px) translateY(-31px);
+
+}
+
+.corrective-styling {
+  padding-top: 1em;
 }

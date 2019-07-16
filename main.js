@@ -21,6 +21,7 @@ function drawBarChart(data, options, element) {
   drawBars(data, axis, element);
   adjustBarLength(data, axis);
   displayValueInsideBar(data, options);
+  addLabels(data, options, element);
 }
 
 function drawBars(data, axis, element) {
@@ -40,7 +41,11 @@ function drawBars(data, axis, element) {
 
 function adjustBarLength(data, axis) {
   //Find out the largest element of the array to establish the largest bar chart
-  let largest = Math.max.apply(Math, data);
+  let dataArrayNumberValues = [];
+  for(var i = 0; i < data.length;i++) {
+    dataArrayNumberValues.push(data[i][0])
+  }
+  let largest = Math.max.apply(Math, dataArrayNumberValues);
   //Based on axis - div sizes adjusted depending on the array values
   let direction = '';
   let size = '';
@@ -54,7 +59,7 @@ function adjustBarLength(data, axis) {
     console.log('Axis is not recognized');
   }
   for(var i = 0; i < data.length; i++) {
-    document.getElementById('bar' + i).style[direction] = (data[i] / largest * 80) + '%';
+    document.getElementById('bar' + i).style[direction] = (data[i][0] / largest * 80) + '%';
     document.getElementById('bar' + i).style[size] = (80 / data.length) + '%';  
   }
 }
@@ -65,7 +70,7 @@ function displayValueInsideBar(data, options) {
     let div = document.createElement('div');
     div.id = 'barChartValue' + i;
     div.className = 'textInsideBarChart';
-    div.textContent = data[i];
+    div.textContent = data[i][0];
     document.getElementById('bar'+ i).appendChild(div);
     if(options.barChartText == 'right') {
       document.getElementById('bar' + i).classList.add('right');
@@ -79,5 +84,29 @@ function displayValueInsideBar(data, options) {
    
 }
 
-drawBarChart([1,2,12,4,5], {axis: 'y', barChartText: 'center'}, 'mainDiv');
+function addLabels(data, options, element) {
+  for(var i = 0; i < data.length; i++) {
+    let div = document.createElement('div');
+    div.id = 'label' + i;
+    if(options.axis == 'x') {
+      div.className = 'labelX';
+    } else if(options.axis == 'y') {
+      div.className = 'labelY';
+      stylingCorrection();
+    } else {
+      div.className = 'labelX';
+    }   
+    div.textContent = data[i][1];
+    document.getElementById('bar' + i).appendChild(div);  
+  }
+}
+
+function stylingCorrection() {
+  let barArray = document.querySelectorAll('.textInsideBarChart');
+  barArray.forEach(element => {
+    element.classList.add('corrective-styling');
+  })
+}
+
+drawBarChart([[12, 'mazda'],[7,'bmw'],[4, 'tesla'],[5, 'mercedes']], {axis: 'y', barChartText: 'center'}, 'mainDiv');
 
